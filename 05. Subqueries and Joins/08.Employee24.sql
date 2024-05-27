@@ -1,6 +1,6 @@
   SELECT 
-	  e.[EmployeeID],
-	  e.[FirstName],
+	    e.[EmployeeID],
+	    e.[FirstName],
  CASE WHEN 
  YEAR(p.[StartDate]) >= 2005 THEN NULL
  ELSE p.[Name] 
