@@ -1,5 +1,5 @@
  SELECT [DepositGroup],
-	SUM([DepositAmount])
+	SUM([DepositAmount]) AS [TotalSum]
    FROM [WizzardDeposits]
 GROUP BY 
 		[DepositGroup]
