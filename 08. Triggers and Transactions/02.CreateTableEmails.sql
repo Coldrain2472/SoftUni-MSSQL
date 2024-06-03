@@ -1,4 +1,4 @@
-CREATE TRIGGER tr_CreateNewEmailOnNewLogEntry
+CREATE TRIGGER [tr_CreateNewEmailOnNewLogEntry]
 ON [Logs] FOR INSERT
 AS
 INSERT INTO [NotificationEmails] VALUES
