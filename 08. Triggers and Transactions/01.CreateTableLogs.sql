@@ -1,4 +1,4 @@
-CREATE TRIGGER tr_AddToLogsOnAccountUpdate
+CREATE TRIGGER [tr_AddToLogsOnAccountUpdate]
 ON [Accounts] FOR UPDATE
 AS
 INSERT INTO [Logs] VALUES
