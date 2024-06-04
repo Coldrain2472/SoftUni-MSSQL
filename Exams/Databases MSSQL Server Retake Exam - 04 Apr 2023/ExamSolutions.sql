@@ -181,3 +181,21 @@ LEFT JOIN
 	    c.[Name], c.[NumberVAT]
  ORDER BY 
 	MAX(p.[Price]) DESC
+
+-- Problem 10
+
+	SELECT 
+		 c.[Name] AS [Client],
+		 FLOOR(AVG(p.[Price])) AS [Average Price]
+      FROM [Clients] AS c
+ LEFT JOIN 
+	       [ProductsClients] AS pc ON pc.[ClientId] = c.[Id]
+	  JOIN [Products] AS p ON p.[Id] = pc.ProductId
+	  JOIN [Vendors] AS v ON v.[Id] = p.[VendorId]
+	 WHERE 
+		 v.[NumberVAT] LIKE '%FR%'
+  GROUP BY 
+		 c.[Name]
+  ORDER BY 
+		   [Average Price],
+		   [Client] DESC
