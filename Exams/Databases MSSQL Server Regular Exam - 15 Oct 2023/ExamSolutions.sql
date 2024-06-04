@@ -173,3 +173,43 @@ ORDER BY c.[Name],
 	  h.[Name]
   ORDER BY 
 		[HotelRevenue] DESC
+
+-- Problem 11
+CREATE OR ALTER FUNCTION [udf_RoomsWithTourists](@roomType VARCHAR(40)) 
+	RETURNS INT
+	AS
+	BEGIN
+			DECLARE @TotalTourists INT
+
+			SELECT @TotalTourists = SUM(b.[AdultsCount] + b.[ChildrenCount])
+			FROM [Bookings] AS b
+			JOIN [Rooms] r ON b.[RoomId] = r.[Id]
+			WHERE 
+			   r.[Type] = @roomType
+
+			IF @TotalTourists IS NULL
+			SET @TotalTourists = 0
+
+			RETURN @TotalTourists
+	END
+
+  -- Problem 12
+CREATE OR ALTER PROCEDURE [usp_SearchByCountry] (@country NVARCHAR(50))
+	AS
+	BEGIN
+			SELECT
+				t.[Name],
+				t.[PhoneNumber],
+				t.[Email],
+		  COUNT(b.[Id]) AS [CountOfBookings]
+    FROM [Tourists] AS t
+    JOIN [Bookings] AS b ON t.[Id] = b.[TouristId]
+    JOIN [Countries] AS c ON t.[CountryId] = c.[Id]
+    WHERE 
+	   c.[Name] = @country
+    GROUP BY 
+	   t.[Name], t.[PhoneNumber], t.[Email]
+    ORDER BY 
+	   t.[Name], 
+	   [CountOfBookings] DESC
+	END
