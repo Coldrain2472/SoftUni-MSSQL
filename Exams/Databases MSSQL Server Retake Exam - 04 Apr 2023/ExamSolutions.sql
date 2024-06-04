@@ -95,6 +95,23 @@ INSERT INTO [Invoices]([Number], [IssueDate], [DueDate], [Amount], [Currency], [
 		  SET [AddressId] = 3
 	  WHERE [Name] LIKE '%CO%'
 
+-- Problem 04
+
+DECLARE @clientId INT =
+(
+	SELECT [Id] FROM [Clients]
+	WHERE [NumberVAT] LIKE 'IT%'
+)
+
+DELETE FROM [ProductsClients]
+WHERE [ClientId] = @clientId
+
+DELETE FROM [Invoices]
+WHERE [ClientId] = @clientId
+
+DELETE FROM [Clients]
+WHERE [NumberVAT] LIKE 'IT%'
+
 -- Problem 05
 
   SELECT [Number], 
