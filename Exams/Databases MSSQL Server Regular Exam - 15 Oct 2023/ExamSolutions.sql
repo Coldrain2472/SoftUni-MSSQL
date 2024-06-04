@@ -89,6 +89,7 @@ SET Email = NULL
  WHERE [Name] LIKE '%MA%'
 
 -- Problem 04
+
   DELETE 
   FROM [Bookings]
  WHERE [TouristId] IN (6, 16, 25)
@@ -98,6 +99,7 @@ SET Email = NULL
  WHERE [Name] LIKE '%Smith'
 
  -- Problem 05
+ 
   SELECT 
   FORMAT(b.[ArrivalDate], 'yyyy-MM-dd'),
 	   b.[AdultsCount],
