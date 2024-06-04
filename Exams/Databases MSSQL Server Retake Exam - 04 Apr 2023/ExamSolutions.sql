@@ -199,3 +199,23 @@ LEFT JOIN
   ORDER BY 
 		   [Average Price],
 		   [Client] DESC
+
+-- Problem 11
+
+CREATE OR ALTER FUNCTION [udf_ProductWithClients](@productName NVARCHAR(35))
+RETURNS INT AS
+BEGIN
+	DECLARE @result INT =
+	(
+		SELECT
+			COUNT(*)
+		FROM [Clients] AS c
+		JOIN [ProductsClients] AS pc ON pc.[ClientId] = c.[Id]
+		JOIN [Products] AS p ON pc.[ProductId] = p.[Id]
+	   WHERE 
+		   p.[Name] = @productName
+	GROUP BY 
+		   p.[Id]
+	)
+	RETURN @result
+END
