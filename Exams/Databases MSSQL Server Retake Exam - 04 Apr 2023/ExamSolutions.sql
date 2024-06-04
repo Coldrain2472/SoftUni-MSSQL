@@ -133,3 +133,19 @@ ORDER BY [Amount] DESC,
 	  c.[Name] = 'ADR' OR c.[Name] = 'Others'
   ORDER BY 
 	  p.[Price] DESC
+
+-- Problem 07
+
+ SELECT 
+	c.[Id],
+	c.[Name] AS [Client],
+  CONCAT( a.[StreetName], ' ', a.[StreetNumber], ', ', a.[City], ', ', a.[PostCode], ', ', co.[Name]) AS [Address]
+ FROM [Clients] AS c
+ JOIN [Addresses] AS a ON a.[Id] = c.[AddressId]
+ JOIN [Countries] AS co ON co.[Id] = a.[CountryId]
+ LEFT JOIN 
+	  [ProductsClients] AS pc ON pc.[ClientId] = c.[Id]
+ WHERE 
+   pc.[ProductId] IS NULL
+ ORDER BY 
+	c.[Name]
