@@ -161,3 +161,15 @@ ORDER BY c.[Name],
 	t.[Name] NOT LIKE '%EZ'
  ORDER BY 
 	r.[Price] DESC
+
+ -- Problem 10
+ SELECT 
+	  h.[Name] AS [HotelName],
+  SUM(r.[Price] * DATEDIFF(DAY, [ArrivalDate], [DepartureDate])) AS [HotelRevenue]
+   FROM [Bookings] AS b
+   JOIN [Rooms] AS r ON r.[Id] = b.[RoomId]
+   JOIN [Hotels] AS h ON h.[Id] = b.[HotelId]
+  GROUP BY
+	  h.[Name]
+  ORDER BY 
+		[HotelRevenue] DESC
