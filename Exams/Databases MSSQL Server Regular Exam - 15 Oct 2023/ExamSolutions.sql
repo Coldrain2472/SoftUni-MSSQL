@@ -96,3 +96,14 @@ SET Email = NULL
   DELETE 
   FROM [Tourists]
  WHERE [Name] LIKE '%Smith'
+
+ -- Problem 05
+  SELECT 
+  FORMAT(b.[ArrivalDate], 'yyyy-MM-dd'),
+	   b.[AdultsCount],
+	   b.[ChildrenCount]
+    FROM [Bookings] AS b
+    JOIN [Rooms] AS r ON r.[Id] = b.[RoomId]
+ORDER BY 
+	   r.[Price] DESC,	
+	   b.[ArrivalDate]
