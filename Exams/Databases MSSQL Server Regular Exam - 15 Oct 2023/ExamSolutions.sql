@@ -148,3 +148,16 @@ JOIN [Countries] c ON d.[CountryId] = c.[Id]
 WHERE b.[ArrivalDate] < '2023-12-31' AND h.[Id] % 2 = 1
 ORDER BY c.[Name], 
 	     b.[ArrivalDate]
+
+-- Problem 09
+ SELECT 
+	h.[Name] AS [HotelName],
+	r.[Price] AS [RoomPrice]
+ FROM [Tourists] AS t
+ JOIN [Bookings] AS b ON b.[TouristId] = t.[Id]
+ JOIN [Rooms] AS r ON r.[Id] = b.[RoomId]
+ JOIN [Hotels] AS h ON h.[Id] = b.[HotelId]
+ WHERE 
+	t.[Name] NOT LIKE '%EZ'
+ ORDER BY 
+	r.[Price] DESC
