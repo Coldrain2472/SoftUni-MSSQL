@@ -203,3 +203,17 @@ ORDER BY
 	  tn.[Name]
  ORDER BY 
 	  tn.[Name]
+
+-- Problem 10  
+
+  SELECT 
+		 tr.[Id] AS [TrainId],
+		  t.[Name] AS [DepartureTown],
+		 mr.[Details]
+	FROM [Trains] AS tr
+	JOIN [MaintenanceRecords] AS mr ON tr.[Id] = mr.[TrainId]
+	JOIN [Towns] AS t ON t.[Id] = tr.[DepartureTownId]
+   WHERE 
+	  mr.[Details] LIKE '%inspection%'
+ORDER BY 
+	  tr.[Id]
