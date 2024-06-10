@@ -117,3 +117,16 @@ WHERE [DateOfArrival] > '2023-10-31'
      FROM [Tickets]
  ORDER BY [Price],
 		  [DateOfDeparture] DESC
+
+-- Problem 06
+
+	SELECT 
+		p.[Name],
+		t.[Price] AS [TicketPrice],
+		t.[DateOfDeparture],
+		t.[TrainId]
+	 FROM [Tickets] AS t
+	 JOIN [Passengers] AS p ON p.[Id] = t.[PassengerId]
+ ORDER BY 
+	    t.[Price] DESC,
+		p.[Name]
