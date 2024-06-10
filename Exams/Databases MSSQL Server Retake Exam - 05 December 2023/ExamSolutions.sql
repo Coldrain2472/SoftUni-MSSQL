@@ -217,3 +217,24 @@ ORDER BY
 	  mr.[Details] LIKE '%inspection%'
 ORDER BY 
 	  tr.[Id]
+
+-- Problem 11
+
+CREATE FUNCTION [udf_TownsWithTrains](@Name VARCHAR(30))
+	RETURNS INT
+			 AS
+		  BEGIN
+
+				DECLARE @Count INT
+				DECLARE @TownId INT
+
+				SELECT @TownId = [Id]
+				  FROM [Towns]
+				 WHERE [Name] = @Name;
+				SELECT @Count = COUNT(*) 
+				  FROM [Trains]
+				 WHERE [ArrivalTownId] = @TownId OR [DepartureTownId] = @TownId
+
+				RETURN @Count
+
+		   END
