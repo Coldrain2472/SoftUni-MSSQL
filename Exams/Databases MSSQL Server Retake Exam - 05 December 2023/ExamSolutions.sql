@@ -171,3 +171,19 @@ WHERE [Id] = @TrainId
   ORDER BY 
 		 t.[Name],
 		rs.[Name]
+
+-- Problem 08
+
+  SELECT TOP(3)
+	  tr.[Id] AS [TrainId],
+	  tr.[HourOfDeparture],
+	  tc.[Price] AS [TicketPrice],
+	   t.[Name] AS [Destination]	
+	FROM [Trains] AS tr
+	JOIN [Tickets] AS tc ON tr.[Id] = tc.[TrainId]
+	JOIN [Towns] AS t ON t.[Id] = tr.[ArrivalTownId]
+   WHERE 
+	  tr.[HourOfDeparture] LIKE '08:%' AND tc.[Price] > 50
+ORDER BY 
+	  tc.[Price], 
+	  tr.[DepartureTownId]
