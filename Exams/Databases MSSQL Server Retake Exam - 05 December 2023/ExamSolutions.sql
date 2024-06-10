@@ -109,6 +109,30 @@ UPDATE [Tickets]
 SET [DateOfArrival] = DATEADD(DAY, 7, [DateOfArrival])
 WHERE [DateOfArrival] > '2023-10-31'
 
+-- Problem 04
+
+DECLARE @BerlinId INT
+DECLARE @TrainId INT
+
+SELECT @BerlinId = [Id] FROM [Towns] WHERE [Name] = 'Berlin'
+SELECT @TrainId = [Id] FROM [Trains] WHERE [DepartureTownId] = @BerlinId
+
+DELETE 
+FROM [TrainsRailwayStations]
+WHERE [TrainId] = @TrainId
+
+DELETE 
+FROM [Tickets]
+WHERE [TrainId] = @TrainId
+
+DELETE 
+FROM [MaintenanceRecords]
+WHERE [TrainId] = @TrainId
+
+DELETE 
+FROM [Trains]
+WHERE [Id] = @TrainId
+
 -- Problem 05
 
    SELECT 
