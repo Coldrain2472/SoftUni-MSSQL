@@ -187,3 +187,19 @@ WHERE [Id] = @TrainId
 ORDER BY 
 	  tc.[Price], 
 	  tr.[DepartureTownId]
+
+-- Problem 09
+
+  SELECT 
+		 tn.[Name] AS [TownName],
+		COUNT(*) AS [PassengersCount]
+    FROM [Tickets] AS t
+    JOIN [Passengers] AS p ON p.[Id] = t.[PassengerId]
+	JOIN [Trains] AS tr ON tr.[Id] = t.[TrainId]
+	JOIN [Towns] as tn ON tn.[Id] = tr.[ArrivalTownId]
+	WHERE
+	   t.[Price] > 76.99
+ GROUP BY 
+	  tn.[Name]
+ ORDER BY 
+	  tn.[Name]
