@@ -108,3 +108,12 @@ WHERE [DateOfDeparture] > '2023-10-31'
 UPDATE [Tickets]
 SET [DateOfArrival] = DATEADD(DAY, 7, [DateOfArrival])
 WHERE [DateOfArrival] > '2023-10-31'
+
+-- Problem 05
+
+   SELECT 
+		  [DateOfDeparture],
+		  [Price] AS [TicketPrice]
+     FROM [Tickets]
+ ORDER BY [Price],
+		  [DateOfDeparture] DESC
