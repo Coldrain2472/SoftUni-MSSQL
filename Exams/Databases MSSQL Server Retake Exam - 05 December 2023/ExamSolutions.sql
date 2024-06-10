@@ -98,3 +98,13 @@ INSERT INTO [Tickets]([Price], [DateOfDeparture], [DateOfArrival], [TrainId], [P
 	(160.00, '2023-08-03', '2023-08-03', 38, 3),
 	(255.00, '2023-09-01', '2023-09-02', 39, 21),
 	(95.00, '2023-09-02', '2023-09-03', 40, 22)
+
+-- Problem  03
+
+UPDATE [Tickets]
+SET [DateOfDeparture] = DATEADD(DAY, 7, [DateOfDeparture])
+WHERE [DateOfDeparture] > '2023-10-31'
+
+UPDATE [Tickets]
+SET [DateOfArrival] = DATEADD(DAY, 7, [DateOfArrival])
+WHERE [DateOfArrival] > '2023-10-31'
