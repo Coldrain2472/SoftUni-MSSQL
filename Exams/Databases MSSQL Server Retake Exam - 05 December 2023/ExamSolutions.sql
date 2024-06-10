@@ -130,3 +130,20 @@ WHERE [DateOfArrival] > '2023-10-31'
  ORDER BY 
 	    t.[Price] DESC,
 		p.[Name]
+
+-- Problem 07
+
+	SELECT 
+		 t.[Name] AS [Town],
+		rs.[Name] AS [RailwayStation]
+	  FROM 
+		   [RailwayStations] AS rs
+	  JOIN 
+		   [Towns] AS t ON rs.[TownId] = T.[Id]
+ LEFT JOIN 
+		   [TrainsRailwayStations] AS trs ON rs.[Id] = trs.[RailwayStationId]
+	 WHERE 
+	   trs.[RailwayStationId] IS NULL
+  ORDER BY 
+		 t.[Name],
+		rs.[Name]
