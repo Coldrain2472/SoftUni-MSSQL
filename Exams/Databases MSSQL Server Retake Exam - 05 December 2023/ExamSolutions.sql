@@ -238,3 +238,27 @@ CREATE FUNCTION [udf_TownsWithTrains](@Name VARCHAR(30))
 				RETURN @Count
 
 		   END
+
+-- Problem 12
+
+CREATE PROCEDURE [usp_SearchByTown](@TownName VARCHAR(50)) 
+		 AS
+	  BEGIN
+			DECLARE @TownId INT
+
+			 SELECT @TownId = [Id]
+			   FROM [Towns]
+			  WHERE [Name] = @TownName;
+
+			  SELECT 
+					  p.[Name] AS [PassengerName],
+					 ti.[DateOfDeparture],
+					 tr.[HourOfDeparture]
+				FROM [Trains] AS tr
+				JOIN [Tickets] AS ti ON tr.[Id] = ti.[TrainId]
+				JOIN [Passengers] AS p ON ti.[PassengerId] = p.[Id]
+			   WHERE tr.[ArrivalTownId] = @TownId
+			ORDER BY ti.[DateOfDeparture] DESC, 
+					  p.[Name]
+
+		END
