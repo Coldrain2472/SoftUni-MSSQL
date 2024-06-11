@@ -139,3 +139,20 @@ ORDER BY
 	     [Sites] DESC,
 	     [Location]
 
+-- Problem 08
+
+  SELECT 
+	   s.[Name] AS [Site],
+       l.[Name] AS [Location],
+       l.[Municipality],
+       l.[Province],
+       s.[Establishment]
+    FROM [Sites] AS s
+    JOIN [Locations] AS l ON l.[Id] = s.[LocationId]
+   WHERE 
+	   l.[Name] NOT LIKE 'B%' 
+	AND l.[Name] NOT LIKE 'M%' 
+   AND l.[Name] NOT LIKE 'D%' 
+   AND s.[Establishment] LIKE '%BC'
+ORDER BY
+       s.[Name]
