@@ -156,3 +156,16 @@ ORDER BY [CountOfAnimals] DESC,
 	  vd.[DepartmentName] = 'Education program assistant' AND v.[Address] LIKE '%Sofia%'
 ORDER BY 
 	   v.[Name]
+
+-- Problem 10
+
+	SELECT 
+		 a.[Name],
+	YEAR(a.[BirthDate]) AS [BirthYear],
+	   ant.[AnimalType]
+	  FROM [Animals] AS a
+	  JOIN [AnimalTypes] AS ant ON ant.[Id] = a.[AnimalTypeId]
+	 WHERE 
+		 a.[OwnerId] IS NULL AND AnimalTypeId != 3 AND DATEDIFF(YEAR, BirthDate, '01/01/2022') < 5
+  ORDER BY 
+		 a.[Name]
