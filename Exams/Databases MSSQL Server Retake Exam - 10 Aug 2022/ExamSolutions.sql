@@ -106,11 +106,12 @@ ORDER BY
 	[Name]
 
 -- Problem 06
+
   SELECT 
-	   s.[Name],
-	   l.[Name],
+	   s.[Name] AS [Site],
+	   l.[Name] AS [Location],
 	   s.[Establishment],
-	   c.[Name]
+	   c.[Name] AS [Category]
     FROM [Sites] AS s
 	JOIN [Locations] AS l ON l.[Id] = s.[LocationId]
 	JOIN [Categories] AS c ON c.[Id] = s.[CategoryId]
