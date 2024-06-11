@@ -126,3 +126,20 @@ GROUP BY
 	   o.[Name]
 ORDER BY [CountOfAnimals] DESC,
 		 [Owner]
+
+-- Problem 08
+
+  SELECT
+	CONCAT(o.[Name], '-', a.[Name]) AS [Owners-Animals],
+	   o.[PhoneNumber],
+	   c.[Id] AS [CageId]
+	FROM [Owners] AS o
+	JOIN [Animals] AS a ON a.[OwnerId] = o.[Id]
+	JOIN [AnimalTypes] AS ant ON ant.[Id] = a.[AnimalTypeId]
+	JOIN [AnimalsCages] AS ac ON ac.[AnimalId] = a.[Id]
+	JOIN [Cages] AS c ON c.[Id] = ac.[CageId]
+	WHERE 
+	 ant.[AnimalType] = 'mammals'
+ ORDER BY 
+	   o.[Name],
+	   a.[Name] DESC
