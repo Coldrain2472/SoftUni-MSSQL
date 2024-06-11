@@ -174,3 +174,20 @@ LEFT JOIN [TouristsBonusPrizes] AS tbp ON tbp.[TouristId] = t.[Id]
 LEFT JOIN [BonusPrizes] AS bp ON bp.[Id] = tbp.[BonusPrizeId]
  ORDER BY 
 	    t.[Name]
+
+-- Problem 10
+
+SELECT
+	SUBSTRING(t.[Name], CHARINDEX(' ', t.[Name], 1) + 1, LEN(t.[Name])) AS [LastName],
+	t.[Nationality],
+	t.[Age],
+	t.[PhoneNumber]
+ FROM [Tourists] AS t
+ JOIN [SitesTourists] AS st ON st.[TouristId] = t.[Id]
+ JOIN [Sites] AS s ON s.[Id] = st.[SiteId]
+WHERE 
+	s.[CategoryId] = 8
+GROUP BY 
+SUBSTRING(t.[Name], CHARINDEX(' ', t.[Name], 1)+1, LEN(t.[Name])), t.[Nationality], t.[Age], t.[PhoneNumber]
+ORDER BY 
+	  [LastName]
