@@ -208,3 +208,27 @@ RETURN
 		WHERE s.[Name] = @Site
 	)
 END
+
+-- Problem 12
+
+CREATE PROCEDURE [usp_AnnualRewardLottery](@TouristName VARCHAR(50))
+AS
+DECLARE @result INT =
+		(
+		SELECT
+			COUNT(s.[Id])
+		FROM [SitesTourists] AS st
+		JOIN [Sites] AS s ON s.[Id] = st.[SiteId]
+		JOIN [Tourists] AS t ON t.[Id] = st.[TouristId]
+		WHERE t.[Name] = @TouristName
+		GROUP BY t.[Id]
+		)
+
+	SELECT
+		[Name],
+		CASE WHEN @result >= 100 THEN 'Gold badge'
+			 WHEN @result >= 50 THEN 'Silver badge'
+			 WHEN @result >= 25 THEN 'Bronze badge'
+		END AS [Reward]
+	FROM [Tourists]
+	WHERE [Name] = @TouristName
