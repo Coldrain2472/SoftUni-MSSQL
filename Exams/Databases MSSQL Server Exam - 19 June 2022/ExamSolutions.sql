@@ -114,3 +114,15 @@ ORDER BY
 	JOIN [AnimalTypes] AS at ON at.[Id] = a.[AnimalTypeId]
 ORDER BY 
 	   a.[Name]
+
+-- Problem 07
+
+  SELECT TOP(5)
+	   o.[Name] AS [Owner],
+	 COUNT(*) AS [CountOfAnimals]
+	FROM [Owners] AS o
+	JOIN [Animals] AS a ON a.[OwnerId] = o.[Id]
+GROUP BY 
+	   o.[Name]
+ORDER BY [CountOfAnimals] DESC,
+		 [Owner]
