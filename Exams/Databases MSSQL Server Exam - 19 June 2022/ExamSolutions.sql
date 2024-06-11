@@ -169,3 +169,20 @@ ORDER BY
 		 a.[OwnerId] IS NULL AND AnimalTypeId != 3 AND DATEDIFF(YEAR, BirthDate, '01/01/2022') < 5
   ORDER BY 
 		 a.[Name]
+
+-- Problem 11
+
+CREATE FUNCTION [udf_GetVolunteersCountFromADepartment](@VolunteersDepartment VARCHAR(30))
+RETURNS INT
+AS
+BEGIN
+		RETURN
+		(
+		SELECT 
+			COUNT(v.[Id])
+		FROM [VolunteersDepartments] AS vd
+		JOIN [Volunteers] AS v ON v.[DepartmentId] = vd.[Id]
+		WHERE vd.[DepartmentName] = @VolunteersDepartment
+		GROUP BY vd.[DepartmentName]
+		)
+END
