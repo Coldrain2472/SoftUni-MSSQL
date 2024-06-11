@@ -72,3 +72,9 @@ INSERT INTO [Animals]([Name], [BirthDate], [OwnerId], [AnimalTypeId])
 	('Harpy Eagle', '2015-04-17', 15, 3),
 	('Hamadryas Baboon', '2017-11-02', NULL, 1),
 	('Tuatara', '2021-06-30', 2, 4)
+
+-- Problem 03
+
+UPDATE [Animals]
+SET [OwnerId] = 4
+WHERE [OwnerId] IS NULL
