@@ -88,3 +88,18 @@ WHERE [DepartmentId] = 2
 DELETE
 FROM [VolunteersDepartments]
 WHERE [DepartmentName] = 'Education program assistant'
+
+-- Problem 05
+
+  SELECT 
+	[Name],
+	[PhoneNumber],
+	[Address],
+	[AnimalId],
+	[DepartmentId]
+    FROM 
+	[Volunteers]
+ORDER BY 
+	[Name], 
+	[AnimalId], 
+	[DepartmentId]
