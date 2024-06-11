@@ -74,3 +74,9 @@ INSERT INTO [Sites]([Name], [LocationId], [CategoryId], [Establishment])
 	('The Tomb of Tsar Sevt', 63, 8, 'V BC'),
 	('Sinite Kamani Natural Park', 17, 1, NULL),
 	('St. Petka of Bulgaria – Rupite', 92, 6, '1994')
+
+-- Problem 03
+
+UPDATE [Sites]
+SET [Establishment] = '(not defined)'
+WHERE [Establishment] IS NULL
