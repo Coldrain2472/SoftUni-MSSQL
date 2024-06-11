@@ -191,3 +191,20 @@ GROUP BY
 SUBSTRING(t.[Name], CHARINDEX(' ', t.[Name], 1)+1, LEN(t.[Name])), t.[Nationality], t.[Age], t.[PhoneNumber]
 ORDER BY 
 	  [LastName]
+
+-- Problem 11
+
+CREATE FUNCTION [udf_GetTouristsCountOnATouristSite](@Site VARCHAR(100))
+RETURNS INT
+AS
+BEGIN
+RETURN
+	(
+		SELECT
+			COUNT(t.[Id])
+		FROM [SitesTourists] AS st
+		JOIN [Sites] AS s ON s.[Id] = st.[SiteId]
+		JOIN [Tourists] AS t ON t.[Id] = st.[TouristId]
+		WHERE s.[Name] = @Site
+	)
+END
