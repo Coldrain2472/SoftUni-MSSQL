@@ -78,3 +78,13 @@ INSERT INTO [Animals]([Name], [BirthDate], [OwnerId], [AnimalTypeId])
 UPDATE [Animals]
 SET [OwnerId] = 4
 WHERE [OwnerId] IS NULL
+
+-- Problem 04
+
+DELETE
+FROM [Volunteers]
+WHERE [DepartmentId] = 2
+
+DELETE
+FROM [VolunteersDepartments]
+WHERE [DepartmentName] = 'Education program assistant'
