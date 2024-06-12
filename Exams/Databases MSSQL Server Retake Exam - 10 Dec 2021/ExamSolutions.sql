@@ -85,3 +85,15 @@ WHERE ([Condition] = 'C' OR [Condition] = 'B')
 DELETE
 FROM [Passengers]
 WHERE LEN(FullName) <= 10
+
+-- Problem 05
+
+SELECT 
+    [Manufacturer],
+    [Model],
+    [FlightHours],
+    [Condition]
+FROM 
+    [Aircraft]
+ORDER BY 
+    [FlightHours] DESC
