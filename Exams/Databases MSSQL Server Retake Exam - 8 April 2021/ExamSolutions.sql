@@ -78,3 +78,9 @@ INSERT INTO [Reports]([CategoryId], [StatusId], [OpenDate], [CloseDate], [Descri
 UPDATE [Reports]
 SET [CloseDate] = GETDATE()
 WHERE [CloseDate] IS NULL
+
+-- Problem 04
+
+DELETE
+FROM [Reports]
+WHERE [StatusId] = 4
