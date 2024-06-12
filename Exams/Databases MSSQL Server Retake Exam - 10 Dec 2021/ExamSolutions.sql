@@ -71,3 +71,11 @@ FROM
     [Pilots]
 WHERE 
     [Id] BETWEEN 5 AND 15
+
+-- Problem 03
+
+UPDATE [Aircraft]
+SET [Condition] = 'A'
+WHERE ([Condition] = 'C' OR [Condition] = 'B')
+	AND ([FlightHours] IS NULL OR [FlightHours] <= 100)
+	AND [Year] >= 2013
