@@ -60,3 +60,14 @@ CREATE TABLE [FlightDestinations]
 	[PassengerId] INT FOREIGN KEY REFERENCES [Passengers]([Id]) NOT NULL,
 	[TicketPrice] DECIMAL(18, 2) NOT NULL DEFAULT 15
 	)
+
+-- Problem 02
+
+INSERT INTO [Passengers]([FullName], [Email])
+SELECT 
+    [FirstName] + ' ' + [LastName] AS [FullName],
+    REPLACE([FirstName] + [LastName], ' ', '') + '@gmail.com' AS [Email]
+FROM 
+    [Pilots]
+WHERE 
+    [Id] BETWEEN 5 AND 15
