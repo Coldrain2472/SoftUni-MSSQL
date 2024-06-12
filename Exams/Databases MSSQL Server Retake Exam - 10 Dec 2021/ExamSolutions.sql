@@ -157,3 +157,22 @@ HAVING
 ORDER BY 
     [FlightDestinationsCount] DESC,
     a.[Id]
+
+-- Problem 09
+
+SELECT 
+    p.[FullName],
+    COUNT(DISTINCT fd.[AircraftId]) AS [CountOfAircraft],
+    SUM(fd.[TicketPrice]) AS [TotalPayed]
+FROM 
+    [Passengers] AS p
+JOIN 
+    [FlightDestinations] AS fd ON p.[Id] = fd.[PassengerId]
+WHERE 
+    SUBSTRING(p.[FullName], 2, 1) = 'a'
+GROUP BY 
+    p.[FullName]
+HAVING 
+    COUNT(DISTINCT fd.[AircraftId]) > 1
+ORDER BY 
+    p.[FullName]
