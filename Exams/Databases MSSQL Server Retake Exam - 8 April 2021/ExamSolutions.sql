@@ -97,3 +97,18 @@ INNER JOIN
 ORDER BY 
     r.[Description],
     c.[Name]
+
+-- Problem 07
+
+SELECT TOP (5)
+    c.[Name] AS [CategoryName],
+    COUNT(r.[Id]) AS [NumberOfReports]
+FROM 
+    [Categories] AS c
+LEFT JOIN 
+    [Reports] AS r ON c.[Id] = r.[CategoryId]
+GROUP BY 
+    c.[Name]
+ORDER BY 
+    [NumberOfReports] DESC,
+    c.[Name]
