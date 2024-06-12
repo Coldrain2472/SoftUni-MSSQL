@@ -219,3 +219,37 @@ BEGIN
 
     RETURN @FlightDestinationsCount
 END
+
+-- Problem 12
+
+CREATE PROCEDURE [usp_SearchByAirportName](@airportName NVARCHAR(70))
+AS
+BEGIN
+
+    SELECT 
+        a.[AirportName],
+        p.[FullName] AS [FullName (passenger)],
+        CASE 
+            WHEN fd.[TicketPrice] <= 400 THEN 'Low'
+            WHEN fd.[TicketPrice] BETWEEN 401 AND 1500 THEN 'Medium'
+            ELSE 'High'
+        END AS [LevelOfTickerPrice],
+        ac.[Manufacturer],
+        ac.[Condition],
+        at.[TypeName] AS [TypeName]
+    FROM 
+        [Airports] AS a
+    JOIN 
+        [FlightDestinations] AS fd ON a.[Id] = fd.[AirportId]
+    JOIN 
+        [Passengers] AS p ON fd.[PassengerId] = p.[Id]
+    JOIN 
+        [Aircraft] AS ac ON fd.[AircraftId] = ac.[Id]
+    JOIN 
+        [AircraftTypes] AS [at] ON ac.[TypeId] = [at].[Id]
+    WHERE 
+        a.[AirportName] = @airportName
+    ORDER BY 
+        ac.[Manufacturer],
+        p.[FullName]
+END
