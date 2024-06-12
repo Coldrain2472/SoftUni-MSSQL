@@ -199,3 +199,23 @@ WHERE
     AND fd.[TicketPrice] > 2500
 ORDER BY 
     ac.[Model]
+
+-- Problem 11
+
+CREATE FUNCTION [udf_FlightDestinationsByEmail](@email NVARCHAR(50))
+RETURNS INT
+AS
+BEGIN
+    DECLARE @PassengerId INT
+    DECLARE @FlightDestinationsCount INT
+
+    SELECT @PassengerId = [Id]
+    FROM [Passengers]
+    WHERE [Email] = @email
+
+    SELECT @FlightDestinationsCount = COUNT(*)
+    FROM [FlightDestinations]
+    WHERE [PassengerId] = @PassengerId
+
+    RETURN @FlightDestinationsCount
+END
