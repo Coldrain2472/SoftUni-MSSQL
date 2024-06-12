@@ -24,8 +24,8 @@ CREATE TABLE [Departments]
 CREATE TABLE [Employees]
 	(
 	[Id] INT PRIMARY KEY IDENTITY,
-	[FirstName] VARCHAR(25),
-	[LastName] VARCHAR(25),
+	[FirstName] NVARCHAR(25),
+	[LastName] NVARCHAR(25),
 	[Birthdate] DATETIME2,
 	[Age] INT CHECK([Age] >= 18 AND [Age] <= 110),
 	[DepartmentId] INT FOREIGN KEY REFERENCES [Departments]([Id])
