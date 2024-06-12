@@ -84,3 +84,16 @@ WHERE [CloseDate] IS NULL
 DELETE
 FROM [Reports]
 WHERE [StatusId] = 4
+
+-- Problem 06
+
+SELECT 
+    r.[Description],
+    c.[Name] AS [CategoryName]
+FROM 
+    [Reports] AS r
+INNER JOIN 
+    [Categories] AS c ON r.[CategoryId] = c.[Id]
+ORDER BY 
+    r.[Description],
+    c.[Name]
