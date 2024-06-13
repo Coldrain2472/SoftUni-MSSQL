@@ -255,4 +255,3 @@ INSERT INTO Volunteers(Id, Name, PhoneNumber, Address, AnimalId, DepartmentId) V
 (24, 'Radoslava Mihailova', '0887456325', 'Plovdiv, 16 Pirin str.', 34, 6)
 
 SET IDENTITY_INSERT Volunteers OFF
-
