@@ -222,6 +222,8 @@ END
 
 -- Problem 12
 
+
+
 CREATE PROCEDURE [usp_SearchByAirportName](@airportName NVARCHAR(70))
 AS
 BEGIN
